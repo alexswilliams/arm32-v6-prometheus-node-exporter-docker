@@ -1,0 +1,17 @@
+FROM arm32v6/alpine:3.8
+
+ARG VERSION
+
+RUN mkdir -p /app
+WORKDIR /app
+
+RUN cd /app \
+    && wget https://github.com/prometheus/node_exporter/releases/download/v${VERSION}/node_exporter-${VERSION}.linux-armv6.tar.gz \
+    && tar xzf node_exporter-${VERSION}.linux-armv6.tar.gz \
+    && rm -f node_exporter-${VERSION}.linux-armv6.tar.gz \
+    && mv /app/node_exporter-${VERSION}.linux-armv6/* /app/ \
+    && rmdir /app/node_exporter-${VERSION}.linux-armv6
+
+EXPOSE 9100
+CMD [ "/app/node_exporter" ]
+
