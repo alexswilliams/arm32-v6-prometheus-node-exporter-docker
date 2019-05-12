@@ -8,5 +8,6 @@ function buildAndPush {
     && docker push alexswilliams/arm32v6-prometheus-node-exporter:${version}
 }
 
-buildAndPush "0.17.0"
+# buildAndPush "0.17.0"
+buildAndPush "0.18.0"
 
