@@ -9,7 +9,7 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.description="Prometheus Node Exporter - Repackaged for ARM32v6" \
       org.label-schema.url="https://prometheus.io" \
       org.label-schema.vcs-ref=$VCS_REF \
-      org.label-schema.vcs-url="e.g. https://github.com/alexswilliams/arm32-v6-prometheus-node-exporter-docker" \
+      org.label-schema.vcs-url="https://github.com/alexswilliams/arm32-v6-prometheus-node-exporter-docker" \
       org.label-schema.version=$VERSION \
       org.label-schema.schema-version="1.0"
 
