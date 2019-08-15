@@ -1,4 +1,4 @@
-FROM arm32v6/alpine:3.10.0
+FROM arm32v6/alpine:3.10.1
 
 ARG VERSION
 ARG VCS_REF
