@@ -23,7 +23,7 @@ function buildAndPush {
     )
 }
 
-# buildAndPush "0.17.0"
+buildAndPush "0.17.0"
 buildAndPush "0.18.0"
 buildAndPush "0.18.1" latest
 
