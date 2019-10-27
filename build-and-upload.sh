@@ -23,8 +23,8 @@ function buildAndPush {
     )
 }
 
-buildAndPush "0.17.0"
-buildAndPush "0.18.0"
+# buildAndPush "0.17.0"
+# buildAndPush "0.18.0"
 buildAndPush "0.18.1" latest
 
 curl -X POST "https://hooks.microbadger.com/images/alexswilliams/arm32v6-prometheus-node-exporter/SFBJYlQjp1A8Waf2mlDiJCx8jRs="
