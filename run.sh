@@ -85,7 +85,6 @@ declare -a booleans=(
 declare -a flags=(
     web.listen-address
     web.telemetry-path
-    web.disable-exporter-metrics
     web.max-requests
     web.config
     log.format

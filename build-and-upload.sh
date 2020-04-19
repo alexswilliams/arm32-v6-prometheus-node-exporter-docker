@@ -7,9 +7,8 @@ function buildAndPush {
     local imagename="alexswilliams/arm32v6-prometheus-node-exporter"
     local fromline=$(grep -e '^FROM ' Dockerfile | tail -n -1 | sed 's/^FROM[ \t]*//' | sed 's#.*/##' | sed 's/:/-/' | sed 's/#.*//' | sed -E 's/ +.*//')
     local latest="last-build"
-    if [ "$2" == "latest" ]; then
-        latest="latest"
-    fi
+    if [ "$2" == "latest" ]; then latest="latest"; fi
+
     docker buildx build \
         --platform=linux/arm/v6 \
         --build-arg VERSION=${version} \
