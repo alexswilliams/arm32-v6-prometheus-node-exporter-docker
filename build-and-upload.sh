@@ -6,21 +6,20 @@ function buildAndPush {
     local version=$1
     local imagename="alexswilliams/arm32v6-prometheus-node-exporter"
     local fromline=$(grep -e '^FROM ' Dockerfile | tail -n -1 | sed 's/^FROM[ \t]*//' | sed 's#.*/##' | sed 's/:/-/' | sed 's/#.*//' | sed -E 's/ +.*//')
-
-    docker build -t ${imagename}:${version} \
+    local latest="last-build"
+    if [ "$2" == "latest" ]; then
+        latest="latest"
+    fi
+    docker buildx build \
+        --platform=linux/arm/v6 \
         --build-arg VERSION=${version} \
         --build-arg BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ") \
         --build-arg VCS_REF=$(git rev-parse --short HEAD) \
-        --file Dockerfile . \
-    && docker tag ${imagename}:${version} ${imagename}:${version}-${fromline} \
-    && docker push ${imagename}:${version} \
-    && docker push ${imagename}:${version}-${fromline} \
-    && (
-        if [ "$2" == "latest" ]; then
-            docker tag ${imagename}:${version} ${imagename}:latest \
-            && docker push ${imagename}:latest
-        fi
-    )
+        --tag ${imagename}:${version} \
+        --tag ${imagename}:${version}-${fromline} \
+        --tag ${imagename}:${latest} \
+        --push \
+        --file Dockerfile .
 }
 
 # buildAndPush "0.17.0"
