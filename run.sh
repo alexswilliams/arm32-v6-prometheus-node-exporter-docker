@@ -110,6 +110,8 @@ declare -a flags=(
     collector.diskstats.ignored-devices
     collector.powersupply.ignored-supplies
     collector.netclass.ignored-devices
+    collector.netdev.device-blacklist
+    collector.netdev.device-whitelist
     collector.netstat.fields
     collector.wifi.fixtures
     collector.perf.cpus
