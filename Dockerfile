@@ -1,4 +1,4 @@
-FROM arm32v6/alpine:3.11.5
+FROM arm32v6/alpine:3.12.0
 # Updated here: https://hub.docker.com/r/arm32v6/alpine/tags
 # Inspired from: https://github.com/prometheus/node_exporter/blob/master/Dockerfile
 
