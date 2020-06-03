@@ -2,6 +2,8 @@
 
 set -ex
 
+export DOCKER_BUILDKIT=1
+
 function buildAndPush {
     local version=$1
     local imagename="alexswilliams/arm32v6-prometheus-node-exporter"
@@ -9,7 +11,7 @@ function buildAndPush {
     local latest="last-build"
     if [ "$2" == "latest" ]; then latest="latest"; fi
 
-    docker buildx build \
+    docker build \
         --platform=linux/arm/v6 \
         --build-arg VERSION=${version} \
         --build-arg BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ") \
@@ -17,8 +19,12 @@ function buildAndPush {
         --tag ${imagename}:${version} \
         --tag ${imagename}:${version}-${fromline} \
         --tag ${imagename}:${latest} \
-        --push \
-        --file Dockerfile .
+        --file Dockerfile \
+        .
+
+    docker push ${imagename}:${version}
+    docker push ${imagename}:${version}-${fromline}
+    docker push ${imagename}:${latest}
 }
 
 # buildAndPush "0.17.0"
